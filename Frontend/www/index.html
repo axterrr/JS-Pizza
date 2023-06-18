@@ -1,80 +1,130 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="uk">
+<head>
     <meta charset="UTF-8">
-    <title>Pizza</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Піца</title>
+    <link rel="stylesheet" href="main.css">
 
-    <!-- Bootsrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
 
-    <!-- LESS основний файл -->
-    <link rel="stylesheet/less" type="text/css" href="assets/less/main.less" />
-    <!-- LESS JavaScript компілятор -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+<!--    &lt;!&ndash; LESS основний файл &ndash;&gt;-->
+<!--    <link rel="stylesheet/less" type="text/css" href="assets/less/main.less" />-->
 
+<!--    &lt;!&ndash; LESS JavaScript компілятор &ndash;&gt;-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>-->
 
 </head>
 <body>
-<div id="cart"></div>
-<div class="container">
-    <div class="row" id="pizza_list">
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail pizza-card">
-                <img src="assets/images/pizza_1.jpg">
+    <div class="pizzas">
+        <div class="pizzas-header">
+            <div class="logo">
+                <span class="logo-pizza">PIZZA</span><br>
+                <span class="logo-kma">KMA</span>
+                <img src="assets/images/discount.svg" alt="logo" class="logo-image">
+            </div>
 
-                <div class="caption"><h3>Thumbnail label</h3>
+            <div class="top-bar">
+                <div class="top-bar-top">
+                    <span class="phone-number">(044) 222 5 222</span>
+                    <span class="schedule">24 години/7 днів на тиждень</span>
+                    <span class="free-delivery">Безкоштовна доставка піци</span>
+                    <button class="enter-button">Ввійти</button>
+                </div>
 
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <hr class="top-bar-hr">
 
-                    <p>
-                        <a href="#" class="btn btn-primary">Button 2</a>
-                        <a href="#" class="btn btn-default">Button 1</a>
-                    </p>
+                <div class="top-bar-bottom">
+                    <span class="top-bar-bottom-span">Піца</span>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail pizza-card">
-                <img src="assets/images/pizza_2.jpg">
+        <div class="pizzas-container">
 
-                <div class="caption"><h3>Thumbnail label</h3>
-
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
-                    <p>
-                        <a href="#" class="btn btn-primary">Button 3</a>
-                        <a href="#" class="btn btn-default">Button 4</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail pizza-card">
-                <img src="assets/images/pizza_3.jpg">
-
-                <div class="caption"><h3>Thumbnail label</h3>
-
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
-                    <p>
-                        <a href="#" class="btn btn-primary">Button 5</a>
-                        <a href="#" class="btn btn-default">Button 6</a>
-                    </p>
-                </div>
-            </div>
         </div>
     </div>
-</div>
 
-<!-- jQuery JavaScript -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"> </script>
+    <div class="order">
+        <div class="order-head">
+            <h3 class="order-header-order">Замовлення</h3>
+            <span class="order-header-number">3</span>
+            <button class="order-clean-button">Очистити замовлення</button>
+        </div>
 
-<!--Bootsrap JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <div class="order-main">
 
-<!--Own JavaScript -->
-<!--<script type="text/javascript"  src="assets/js/main.js"> </script>-->
+        </div>
+
+        <div class="order-footer">
+
+        </div>
+    </div>
+
+
+<!--    <div id="cart"></div>-->
+
+<!--    <div class="container">-->
+<!--        <div class="row" id="pizza_list">-->
+<!--            <div class="col-sm-6 col-md-4">-->
+<!--                <div class="thumbnail pizza-card">-->
+<!--                    <img src="assets/images/pizza_1.jpg" alt="pizza image">-->
+
+<!--                    <div class="caption"><h3>Thumbnail label</h3>-->
+
+<!--                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>-->
+
+<!--                        <p>-->
+<!--                            <a href="#" class="btn btn-primary">Button 2</a>-->
+<!--                            <a href="#" class="btn btn-default">Button 1</a>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="col-sm-6 col-md-4">-->
+<!--                <div class="thumbnail pizza-card">-->
+<!--                    <img src="assets/images/pizza_2.jpg" alt="pizza image">-->
+
+<!--                    <div class="caption"><h3>Thumbnail label</h3>-->
+
+<!--                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>-->
+
+<!--                        <p>-->
+<!--                            <a href="#" class="btn btn-primary">Button 3</a>-->
+<!--                            <a href="#" class="btn btn-default">Button 4</a>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="col-sm-6 col-md-4">-->
+<!--                <div class="thumbnail pizza-card">-->
+<!--                    <img src="assets/images/pizza_3.jpg" alt="pizza image">-->
+
+<!--                    <div class="caption"><h3>Thumbnail label</h3>-->
+
+<!--                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>-->
+
+<!--                        <p>-->
+<!--                            <a href="#" class="btn btn-primary">Button 5</a>-->
+<!--                            <a href="#" class="btn btn-default">Button 6</a>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; jQuery JavaScript &ndash;&gt;-->
+<!--    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"> </script>-->
+
+<!--    &lt;!&ndash;Bootstrap JavaScript &ndash;&gt;-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
+
+<!--    &lt;!&ndash;Own JavaScript &ndash;&gt;-->
+<!--    <script type="text/javascript"  src="assets/js/main.js"></script>-->
+
 </body>
 </html>
