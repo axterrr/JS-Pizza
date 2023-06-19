@@ -2,13 +2,13 @@ body {
     margin: 0;
 }
 
-.pizzas {
+.container {
     width: calc(100% - 275px);
     float: left;
     box-sizing: border-box;
 }
 
-.pizzas-header {
+.header {
     background-color: #333331;
     color: white;
     height: 60px;
@@ -73,8 +73,53 @@ body {
     border-color: #d16200;
 }
 
-.pizzas-container {
+.container-main {
     background-color: #fdfdf4;
+    padding-top: 60px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.container-header, .container-menu {
+    text-align: center;
+}
+
+.container-header-text {
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.container-menu-span, .container-menu-button {
+    padding: 8px 10px;
+    color: #eb851c;
+    background-color: #fdfdf4;
+    border: none;
+    border-radius: 5px;
+}
+
+.container-menu-span {
+    background-color: #eb851c;
+    color: white;
+}
+
+.container-pizzas {
+    height: 1000px;
+    padding: 30px 15% 10px;
+}
+
+.container-footer {
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-span {
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 13px;
+    color: #9f9f9f;
 }
 
 .order {
@@ -102,7 +147,7 @@ body {
     font-size: 18px;
 }
 
-.order-header-number {
+.pizza-number {
     color: white;
     background-color: #eb851c;
     display: inline-block;
@@ -126,8 +171,11 @@ body {
 
 .order-main {
     background-color: #f4f4f4;
-    height: 455px;
+    height: calc(100% - 160px);
     width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-bottom: 2px solid #e0e0e0;
 }
 
 .order-card {
@@ -136,6 +184,7 @@ body {
     padding-bottom: 10px;
     padding-top: 10px;
     height: 100px;
+    border-bottom: 2px solid #e0e0e0;;
 }
 
 .order-card-content {
@@ -239,18 +288,13 @@ body {
     justify-content: space-between;
 }
 
-.order-hr {
-    margin: 0;
-    border-color: #e0e0e0;
-}
-
 .order-footer {
     background-color: white;
     padding: 10px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    min-height: 100px;
+    height: 100px;
 }
 
 .order-sum-title {
