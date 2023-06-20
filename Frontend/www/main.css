@@ -102,8 +102,85 @@ body {
 }
 
 .container-pizzas {
-    height: 1000px;
-    padding: 30px 15% 10px;
+    padding: 30px calc((100% - 830px) / 2) 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-column-gap: 25px;
+    grid-row-gap: 30px;
+    justify-items: center;
+}
+
+.pizza-card {
+    display: inline-block;
+    width: 260px;
+    height: 500px;
+    box-sizing: border-box;
+    background-color: white;
+    border: 1px solid #9f9f9f;
+    border-radius: 5px;
+}
+
+.pizza-card-caption {
+    padding: 0 10px 10px;
+}
+
+.pizza-card-image {
+    width: 100%;
+}
+
+.pizza-card-name {
+    margin: 0;
+    color: #eb851c;
+    font-size: 25px;
+}
+
+.pizza-card-type {
+    font-size: 11px;
+    color: #9f9f9f;
+}
+
+.pizza-card-description {
+    margin: 0;
+    font-size: 14px;
+    height: 50px;
+}
+
+.pizza-card-buy {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 12px;
+}
+
+.pizza-card-buy-little, .pizza-card-buy-big {
+    display: flex;
+    flex-direction: column;
+}
+
+.container .pizza-weight {
+    margin: 3px 0 0;
+}
+
+.pizza-card-size-price-number {
+    font-weight: bold;
+    font-size: 23px;
+    text-align: center;
+    margin-top: 13px;
+}
+
+.pizza-card-size-price-text {
+    text-align: center;
+    margin-top: -5px;
+}
+
+.buy-button {
+    background-color: #eb851c;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #d16200;
+    margin-top: 5px;
 }
 
 .container-footer {
@@ -215,9 +292,10 @@ body {
     flex-direction: row;
 }
 
-.order-card-pizza-size, .order-card-pizza-weight {
+.pizza-size, .pizza-weight {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
 .size-number, .weight-number {
@@ -229,7 +307,7 @@ body {
     height: 10px;
 }
 
-.order-card-pizza-weight {
+.pizza-weight {
     margin-left: 15px;
 }
 
@@ -345,4 +423,16 @@ body {
     margin: 5px 0;
     border-style: dashed;
     border-color: #d16200;
+}
+
+@media (max-width: 1175px) {
+    .container-pizzas {
+        padding: 30px calc((100% - 545px) / 2) 20px;
+    }
+}
+
+@media (max-width: 890px) {
+    .container-pizzas {
+        padding: 30px calc((100% - 260px) / 2) 20px;
+    }
 }
