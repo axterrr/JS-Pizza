@@ -9,12 +9,11 @@ body {
 }
 
 .header {
-    background-color: #333331;
+    background-color: rgba(0, 0, 0, 0.8);;
     color: white;
     height: 60px;
     width: calc(100% - 275px);
     position: fixed;
-    opacity: 90%;
     z-index: 1;
 }
 
@@ -28,6 +27,7 @@ body {
     padding: 10px;
     box-sizing: border-box;
     font-size: 16px;
+    float: left;
 }
 
 .logo-kma {
@@ -43,19 +43,35 @@ body {
 }
 
 .top-bar {
-    display: inline-block;
+    display: inline-flex;
+    height: 100%;
+    flex-direction: column;
     padding: 5px 10px;
     box-sizing: border-box;
-    width: calc(100% - 95px);
+    width: calc(100% - 90px);
+    float: left;
+    align-content: space-between;
 }
 
 .top-bar-top {
     color: #9f9f9f;
+    height: 50%;
+    position: relative;
 }
 
 .top-bar-hr {
     border-color: #9f9f9f;
-    margin: 5px 0;
+    margin: 0;
+}
+
+.top-bar-bottom {
+    height: 50%;
+}
+
+.top-bar-bottom-span {
+    display: inline-block;
+    font-size: 18px;
+    margin-top: 3px;
 }
 
 .schedule {
@@ -125,7 +141,6 @@ body {
     content: "Популярна";
     position: absolute;
     background-color: #22ba46;
-    z-index: 0.5;
     box-sizing: border-box;
     color: white;
     right: -10px;
@@ -451,8 +466,32 @@ body {
     }
 }
 
+@media (max-width: 940px) {
+    .free-delivery {
+        display: none;
+    }
+}
+
 @media (max-width: 890px) {
     .container-pizzas {
         padding: 30px calc((100% - 260px) / 2) 20px;
+    }
+}
+
+@media (max-width: 745px) {
+    .schedule {
+        display: none;
+    }
+}
+
+@media (max-width: 615px) {
+    .top-bar-bottom-span {
+        display: none;
+    }
+
+    .enter-button {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 3px);
     }
 }
