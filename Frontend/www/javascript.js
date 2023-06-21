@@ -170,11 +170,23 @@ const pizza_list = [
     }
 ];
 
-pizza_list.forEach( pizza => addPizzaCard(pizza));
-document.getElementsByClassName('order-clean-button')[0].addEventListener('click', clearOrder);
-refreshPizzaListCounter();
-refreshOrderListCounter();
-refreshGeneralSum();
+window.addEventListener('load', function (){
+    const storedData = localStorage.getItem('orderList');
+    let orderList = [];
+    if (storedData) orderList = JSON.parse(storedData);
+    else localStorage.setItem('orderList', JSON.stringify([]));
+    orderList.forEach(card => addOrderCard(card.pizza, card.big_size, card.number));
+
+    pizza_list.forEach(pizza => addPizzaCard(pizza));
+    refreshPizzaListCounter();
+    refreshOrderListCounter();
+    refreshGeneralSum();
+
+    document.getElementsByClassName('order-clean-button')[0].addEventListener('click', clearOrder);
+    for(let button of document.getElementsByClassName('container-menu-button')) {
+        button.addEventListener('click', filter);
+    }
+});
 
 function addPizzaCard(pizza) {
     const newItem = document.createElement('div');
@@ -257,6 +269,14 @@ function addPizzaCard(pizza) {
 function buyPizza(pizza, big_size) {
     const pizzaCard = document.getElementById("order"+pizza.id+big_size);
     if(!pizzaCard) {
+        let orderList = JSON.parse(localStorage.getItem('orderList'));
+        orderList.push({
+            pizza: pizza,
+            big_size: big_size,
+            number: 1
+        })
+        localStorage.setItem('orderList', JSON.stringify(orderList));
+
         addOrderCard(pizza, big_size, 1);
         refreshOrderListCounter();
         refreshGeneralSum();
@@ -286,7 +306,7 @@ function addOrderCard(pizza, big_size, number) {
     
             <div class="order-card-pizza-buttons">
                 <span class="order-card-pizza-price">
-                    <span class="order-card-pizza-price-number">${big_size ? pizza.big_size.price : pizza.small_size.price * number}</span>грн
+                    <span class="order-card-pizza-price-number">${(big_size ? pizza.big_size.price : pizza.small_size.price) * number}</span>грн
                 </span>
                 <div class="order-card-pizza-amount">
                     <button class="order-card-minus">-</button>
@@ -301,7 +321,7 @@ function addOrderCard(pizza, big_size, number) {
 
     newItem.getElementsByClassName('order-card-plus')[0].addEventListener('click', function(){addPizza(newItem, pizza, big_size)});
     newItem.getElementsByClassName('order-card-minus')[0].addEventListener('click', function(){removePizza(newItem, pizza, big_size)});
-    newItem.getElementsByClassName('order-card-delete')[0].addEventListener('click', function(){removeOrderCard(newItem)});
+    newItem.getElementsByClassName('order-card-delete')[0].addEventListener('click', function(){removeOrderCard(newItem, pizza, big_size)});
 
     document.getElementsByClassName('order-main')[0].appendChild(newItem);
 }
@@ -313,6 +333,11 @@ function addPizza(pizzaCard, pizza, big_size) {
     const cost = big_size ? pizza.big_size.price : pizza.small_size.price;
     pizzaCard.getElementsByClassName("order-card-pizza-price-number")[0].textContent = newValue * cost;
 
+    let orderList = JSON.parse(localStorage.getItem('orderList'));
+    const index = orderList.findIndex(card => card.pizza.title === pizza.title && card.big_size === big_size);
+    orderList[index].number = newValue;
+    localStorage.setItem('orderList', JSON.stringify(orderList));
+
     refreshGeneralSum();
 }
 
@@ -323,18 +348,33 @@ function removePizza(pizzaCard, pizza, big_size) {
     const cost = big_size ? pizza.big_size.price : pizza.small_size.price;
     pizzaCard.getElementsByClassName("order-card-pizza-price-number")[0].textContent = newValue * cost;
 
-    if(parseInt(pizzaCard.getElementsByClassName("order-card-pizza-number")[0].textContent) === 0) removeOrderCard(pizzaCard);
-    else refreshGeneralSum();
+    if(parseInt(pizzaCard.getElementsByClassName("order-card-pizza-number")[0].textContent) === 0) removeOrderCard(pizzaCard, pizza, big_size);
+    else {
+        let orderList = JSON.parse(localStorage.getItem('orderList'));
+        const index = orderList.findIndex(card => card.pizza.title === pizza.title && card.big_size === big_size);
+        orderList[index].number = newValue;
+        localStorage.setItem('orderList', JSON.stringify(orderList));
+
+        refreshGeneralSum();
+    }
 }
 
-function removeOrderCard(pizzaCard) {
+function removeOrderCard(pizzaCard, pizza, big_size) {
     pizzaCard.parentElement.removeChild(pizzaCard);
+
+    let orderList = JSON.parse(localStorage.getItem('orderList'));
+    orderList = orderList.filter(card => card.pizza.title !== pizza.title || card.big_size !== big_size);
+    localStorage.setItem('orderList', JSON.stringify(orderList));
+
     refreshOrderListCounter();
     refreshGeneralSum();
 }
 
 function clearOrder() {
     document.getElementsByClassName('order-main')[0].innerHTML = '';
+
+    localStorage.setItem('orderList', JSON.stringify([]));
+
     refreshOrderListCounter();
     refreshGeneralSum();
 }
@@ -353,4 +393,26 @@ function refreshGeneralSum() {
         sum += parseInt(pizzaCard.getElementsByClassName("order-card-pizza-price-number")[0].textContent);
     }
     document.getElementsByClassName('order-sum-number')[0].textContent = sum.toString();
+}
+
+function filter(event) {
+    const button = event.target;
+    if(!button.classList.contains('inactive')) {
+        document.getElementsByClassName('container-pizzas')[0].textContent = '';
+        let newPizzaList;
+
+        if(button.classList.contains('all')) newPizzaList = pizza_list;
+        if(button.classList.contains('meat')) newPizzaList = pizza_list.filter(pizza => pizza.content.meat);
+        if(button.classList.contains('pineapples')) newPizzaList = pizza_list.filter(pizza => pizza.content.pineapple);
+        if(button.classList.contains('mushrooms')) newPizzaList = pizza_list.filter(pizza => pizza.content.mushroom);
+        if(button.classList.contains('seafood')) newPizzaList = pizza_list.filter(pizza => pizza.content.ocean);
+        if(button.classList.contains('vega')) newPizzaList = pizza_list.filter(pizza => !pizza.content.meat && !pizza.content.ocean);
+
+        newPizzaList.forEach(pizza => addPizzaCard(pizza));
+
+        document.getElementsByClassName('inactive')[0].classList.remove('inactive');
+        button.classList.add('inactive');
+
+        refreshPizzaListCounter();
+    }
 }

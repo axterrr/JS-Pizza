@@ -104,7 +104,7 @@ body {
     margin: 10px 0;
 }
 
-.container-menu-span, .container-menu-button {
+.container-menu-button {
     padding: 8px 10px;
     color: #eb851c;
     background-color: #fdfdf4;
@@ -112,7 +112,7 @@ body {
     border-radius: 5px;
 }
 
-.container-menu-span {
+.inactive {
     background-color: #eb851c;
     color: white;
 }
